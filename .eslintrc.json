@@ -1,0 +1,63 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:import/typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "eslint-config-prettier"
+  ],
+  "plugins": ["import", "prettier", "react", "react-hooks", "@typescript-eslint"],
+  "rules": {
+    // Separate import groups with newline by section
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "unknown"],
+        "newlines-between": "always"
+      }
+    ],
+    "import/no-unresolved": [2, { "ignore": [".jpg$", ".jpeg$", ".png$", ".svg$"] }],
+    "import/no-named-as-default-member": 0,
+    "no-console": 1, // Warning to reduce console logs used throughout app
+    "react/prop-types": 0, // Not using prop-types because we have TypeScript
+    "newline-before-return": 1,
+    "no-useless-return": 1,
+    "prefer-const": 1,
+    "no-unused-vars": 0,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/display-name": 0
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
