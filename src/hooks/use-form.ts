@@ -32,7 +32,7 @@ export const useForm = <TFieldValues extends FieldValues = FieldValues, TContext
   const { reset, setError, formState, ...rest } = useBaseForm<TFieldValues, TContext>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema as ObjectSchema<any>), // eslint-disable-line
     defaultValues,
     values,
   })

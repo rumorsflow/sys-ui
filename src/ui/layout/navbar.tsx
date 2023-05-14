@@ -6,7 +6,9 @@ import {
   Navbar as BaseNavbar,
   Box,
   UnstyledButton,
-  useMantineColorScheme, Text, rem,
+  useMantineColorScheme,
+  Text,
+  rem,
 } from '@mantine/core'
 import { IconLogout, IconMoonStars, IconSun } from '@tabler/icons-react'
 
@@ -42,7 +44,10 @@ const useStyles = createStyles((theme) => {
       letterSpacing: rem(3),
       color: 'transparent',
       backgroundClip: 'text',
-      backgroundImage: theme.colorScheme === 'dark' ? theme.fn.linearGradient(45, theme.colors.dark[1], theme.colors.dark[2], theme.colors.dark[1]) : theme.fn.linearGradient(45, theme.colors.dark[3], theme.colors.dark[4], theme.colors.dark[3]),
+      backgroundImage:
+        theme.colorScheme === 'dark'
+          ? theme.fn.linearGradient(45, theme.colors.dark[1], theme.colors.dark[2], theme.colors.dark[1])
+          : theme.fn.linearGradient(45, theme.colors.dark[3], theme.colors.dark[4], theme.colors.dark[3]),
     },
 
     links: {
@@ -95,9 +100,7 @@ export const Navbar: React.FC = () => {
     <BaseNavbar width={{ base: 66 }}>
       <BaseNavbar.Section className={classes.header}>
         <Box component={Link} to="/" td="none">
-          <Text className={classes.logo}>
-            {APP_NAME_SHORT}
-          </Text>
+          <Text className={classes.logo}>{APP_NAME_SHORT}</Text>
         </Box>
       </BaseNavbar.Section>
       <BaseNavbar.Section
