@@ -4,10 +4,8 @@ export type UpdateArticleRequest = {
   id: string
   lang?: string
   title?: string
-  short_desc?: string
-  long_desc?: string
+  desc?: string
   media?: ArticleMedia
-  categories?: string[]
 }
 
 export const getArticleListApi = (params: URLSearchParams, signal?: AbortSignal) =>

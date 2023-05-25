@@ -1,8 +1,9 @@
+import React from 'react'
 import { Control, FieldErrors, FieldValues, UseFormRegister, FieldPath } from 'react-hook-form'
 import { Stack, Textarea } from '@mantine/core'
 
 import { languagesSource } from '@/config'
-import { MultiSelect, Select } from '@/ui'
+import { Select } from '@/ui'
 
 type MainProps<TFieldValues extends FieldValues = FieldValues> = {
   control: Control<TFieldValues>
@@ -36,17 +37,15 @@ export const Main = <TFieldValues extends FieldValues = FieldValues>({
       autosize
       withAsterisk
     />
-    <MultiSelect
-      name={'categories' as FieldPath<TFieldValues>}
-      label="Categories"
-      placeholder="Pick categories"
-      data={[]}
-      control={control}
-      error={errors.categories?.message as string | undefined}
-      getCreateLabel={(query) => `Add ${query}`}
-      fieldValue
-      searchable
-      creatable
+    <Textarea
+      size="md"
+      label="Description"
+      placeholder="Article description"
+      error={errors.desc?.message as string | undefined}
+      {...register('desc' as FieldPath<TFieldValues>)}
+      minRows={5}
+      maxRows={15}
+      autosize
     />
   </Stack>
 )

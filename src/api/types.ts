@@ -151,13 +151,11 @@ export type Article = {
   source: ArticleSource
   lang: string
   title: string
-  short_desc?: string
-  long_desc?: string
+  desc?: string
   media?: ArticleMedia[]
   pub_date: string
   created_at: string
   updated_at: string
-  categories?: string[]
 }
 
 export const defaultJobOptions = (name?: JobName): JobOption[] =>

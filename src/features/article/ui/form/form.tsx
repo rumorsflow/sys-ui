@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { FormMethod, useSubmit, Form as BaseForm } from 'react-router-dom'
 import { useDisclosure } from '@mantine/hooks'
 import { Button, Group, LoadingOverlay, Paper, Tabs } from '@mantine/core'
-import { IconDeviceFloppy, IconNews, IconPhoto, IconSmartHome, IconTrash } from '@tabler/icons-react'
+import { IconDeviceFloppy, IconPhoto, IconSmartHome, IconTrash } from '@tabler/icons-react'
 import * as yup from 'yup'
 
 import { languagesSource } from '@/config'
@@ -12,7 +12,6 @@ import { toForm } from '@/lib'
 import { DeleteModal } from '@/ui'
 
 import { Main } from './main'
-import { Description } from './description'
 import { Media } from './media'
 
 type FormProps = {
@@ -28,8 +27,7 @@ const schema = yup
       .oneOf(languagesSource.map((i) => i.value))
       .default(languagesSource[0].value),
     title: yup.string().required().max(254).default(''),
-    short_desc: yup.string().optional().max(500).default(''),
-    long_desc: yup.string().optional().max(500).default(''),
+    desc: yup.string().optional().max(500).default(''),
     media: yup
       .array(
         yup.object({
@@ -39,7 +37,6 @@ const schema = yup
       )
       .optional()
       .default([]),
-    categories: yup.array(yup.string().required()).optional().default([]),
   })
   .required()
 
@@ -75,9 +72,6 @@ export const Form: React.FC<FormProps> = ({ method, article }) => {
           <Tabs.Tab value="main" icon={<IconSmartHome size="0.8rem" />}>
             Main
           </Tabs.Tab>
-          <Tabs.Tab value="desc" icon={<IconNews size="0.8rem" />}>
-            Description
-          </Tabs.Tab>
           <Tabs.Tab value="media" icon={<IconPhoto size="0.8rem" />}>
             Media
           </Tabs.Tab>
@@ -85,10 +79,6 @@ export const Form: React.FC<FormProps> = ({ method, article }) => {
 
         <Tabs.Panel value="main" pt="sm">
           <Main control={control} register={register} errors={errors} />
-        </Tabs.Panel>
-
-        <Tabs.Panel value="desc" pt="sm">
-          <Description register={register} errors={errors} />
         </Tabs.Panel>
 
         <Tabs.Panel value="media" pt="sm">
